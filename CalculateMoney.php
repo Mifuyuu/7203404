@@ -28,16 +28,18 @@
                 <button type="submit" class="btn btn-primary px-5">Calculate</button>
                 <button type="button" onclick="clearGrade()" class="btn btn-secondary px-5">Reset All</button>
             </form>
-            <div id="grade" class="card overflow-hidden w-50 mt-3 m-auto">
-                <div class="card-header bg-info text-light text-center p-1">
-                    <h4>Show Result</h4>
-                </div>
-                <div class="card-body text-start">
-                    <p>Price of Product: <b><?php echo isset($_POST['price']) ? $_POST['price'] : 0; ?></b></p>
-                    <hr class="my-2">
-                    <p>Amount of Product: <b><?php echo isset($_POST['amount']) ? $_POST['amount'] : 0; ?></b></p>
-                    <hr class="my-2">
-                    <p class="text-primary">Total Paid: <b><?php echo isset($_POST['price']) && isset($_POST['amount']) ? $_POST['price'] * $_POST['amount'] : 0; ?></b></p>
+            <div id="grade">
+                <div class="card overflow-hidden w-50 mt-3 m-auto">
+                    <div class="card-header bg-info text-light text-center p-1">
+                        <h4>Show Result</h4>
+                    </div>
+                    <div class="card-body text-start">
+                        <p>Price of Product: <b><?php echo isset($_POST['price']) ? $_POST['price'] : 0; ?></b></p>
+                        <hr class="my-2">
+                        <p>Amount of Product: <b><?php echo isset($_POST['amount']) ? $_POST['amount'] : 0; ?></b></p>
+                        <hr class="my-2">
+                        <p class="text-primary">Total Paid: <b><?php echo isset($_POST['price']) && isset($_POST['amount']) ? $_POST['price'] * $_POST['amount'] : 0; ?></b></p>
+                    </div>
                 </div>
             </div>
         </div>
