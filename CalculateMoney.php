@@ -14,44 +14,97 @@
             <h1>PHP Calculate Money</h1>
             <hr>
             <p>กรุณากรอกข้อมูลเพื่อทำการคำนวณยอดเงิน</p>
-            <form action="" method="post">
+            <form action="" method="post" class="d-flex justify-content-center flex-column text-center">
                 <div class="mb-3 d-flex gap-5 justify-content-center">
                     <div class="d-flex flex-column w-25">
                         <label for="price" class="form-label">Price</label>
-                        <input type="number" class="form-control text-center m-auto" id="price" name="price" value="<?php echo isset($_POST['price']) ? $_POST['price'] : ''; ?>" placeholder="Enter a Price" required>
+                        <input type="text" class="form-control text-center m-auto" id="price" name="price" value="<?php echo isset($_POST['price']) ? $_POST['price'] : ''; ?>" placeholder="Enter a Price">
                     </div>
                     <div class="d-flex flex-column w-25">
                         <label for="amount" class="form-label">Amount</label>
-                        <input type="number" class="form-control text-center m-auto" id="amount" name="amount" value="<?php echo isset($_POST['amount']) ? $_POST['amount'] : ''; ?>" placeholder="Enter a Amount" required>
+                        <input type="text" class="form-control text-center m-auto" id="amount" name="amount" value="<?php echo isset($_POST['amount']) ? $_POST['amount'] : ''; ?>" placeholder="Enter a Amount">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary px-5">Calculate</button>
-                <button type="button" onclick="clearGrade()" class="btn btn-secondary px-5">Reset All</button>
+                <label>Are you Membership ?</label>
+                <div class="d-flex justify-content-center gap-4 py-4">
+                    <div>
+                        <input type="radio" name="member" id="member" value="1"
+                        <?php echo isset($_POST['member']) && $_POST['member'] == '1' ? 'checked' : ''; ?>
+                        >
+                        <label for="member">Member (10% Discount)</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="member" id="notmember" value="0"
+                        <?php echo isset($_POST['member']) && $_POST['member'] == '0' ? 'checked' : ''; ?>
+                        >
+                        <label for="member">Not a Member</label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center gap-4">
+                    <button type="submit" class="btn btn-primary px-5">Calculate</button>
+                    <button type="button" onclick="clearResult()" class="btn btn-danger px-5">Reset All</button>
+                </div>
             </form>
-            <div id="grade">
-                <div class="card overflow-hidden w-50 mt-3 m-auto">
-                    <div class="card-header bg-info text-light text-center p-1">
-                        <h4>Show Result</h4>
-                    </div>
-                    <div class="card-body text-start">
-                        <p>Price of Product: <b><?php echo isset($_POST['price']) ? $_POST['price'] : 0; ?></b></p>
-                        <hr class="my-2">
-                        <p>Amount of Product: <b><?php echo isset($_POST['amount']) ? $_POST['amount'] : 0; ?></b></p>
-                        <hr class="my-2">
-                        <p class="text-primary">Total Paid: <b><?php echo isset($_POST['price']) && isset($_POST['amount']) ? $_POST['price'] * $_POST['amount'] : 0; ?></b></p>
-                    </div>
-                </div>
+            <div id="ResultBox">
+                <?php
+                if (isset($_POST['price']) && isset($_POST['amount'])) {
+                    $price = $_POST['price'];
+                    $amount = $_POST['amount'];
+
+                    if (is_numeric($price) && is_numeric($amount)) {
+                        $price = floatval($price);
+                        $amount = floatval($amount);
+                        $total = $price * $amount;
+
+                        //ตรวจสอบว่ามีการเลือกสมาชิกหรือไม่
+                        if (isset($_POST['member']) && $_POST['member'] == '1') {
+                            $totalpaid = $total - ($total * 0.1);
+                        } else {
+                            $totalpaid = floatval($total);
+                        }
+
+                        echo '<div class="card overflow-hidden w-50 mt-3 m-auto">';
+                        echo '<div class="card-header bg-info text-light text-center p-1">';
+                        echo '<h4>Show Result</h4>';
+                        echo '</div>';
+                        echo '<div class="card-body text-start">';
+                        echo '<p>Price of Product: <b>' . number_format($price, 2) . '</b></p>';
+                        echo '<hr class="my-2">';
+                        echo '<p>Amount of Product: <b>' . number_format($amount, 2) . '</b></p>';
+                        if ($_POST['member'] == '1') {
+                            echo '<hr class="my-2">';
+                            echo '<p class="text-success">Discount: <b>' . number_format($total - $totalpaid, 2) . '</b></p>';
+                        }
+                        echo '<hr class="my-2">';
+                        echo '<p>Total: <b>' . number_format($total, 2) . '</b></p>';
+                        echo '<hr class="my-2">';
+                        echo '<p class="text-primary">Total Paid: <b>' . number_format($totalpaid, 2) . '</b></p>';
+                        echo '</div>';
+                        echo '</div>';
+                    } else {
+                        echo '<div class="card w-50 my-3 m-auto alert alert-danger text-center p-3">Please input valid numeric value for Price or Amount</div>';
+                        // exit();
+                    }
+                } else {
+                    echo '<div class="card w-50 my-3 m-auto alert alert-secondary text-center p-3">Please input Price and Amount</div>';
+                    // exit();
+                }
+                ?>
             </div>
         </div>
         <hr>
         <a href="index.php">Back to Home</a>
     </div>
+    </div>
     <script>
-        function clearGrade() {
-            document.getElementById('grade').innerHTML = '';
+        function clearResult() {
+            document.getElementById('ResultBox').innerHTML = '';
             document.getElementById('price').value = '';
             document.getElementById('amount').value = '';
-        }  
-</script>
+            document.getElementById('member').checked = false;
+            document.getElementById('notmember').checked = false;
+        }
+    </script>
 </body>
+
 </html>

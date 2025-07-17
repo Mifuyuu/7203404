@@ -53,6 +53,7 @@
         <li><a href="W01-01-IntroPHP.php">Intro PHP</a></li>
         <li><a href="W02_01_oddEvenNumber.php">Odd-Even-Number</a></li>
         <li><a href="W02_02_grade.php">Calculate Grade</a></li>
+        <li><a href="CalculateMoney.php">Calculate Money</a></li>
     </ul>
 </html>
 </body>
