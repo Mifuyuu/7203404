@@ -121,8 +121,9 @@
                 <li><a href="W02_02_grade.php">Calculate Grade</a></li>
                 <li><a href="W02_H01_CalculateMoney.php">Calculate Money</a></li>
                 <li><a href="W06_01_LoopProduct.php">Show Product (fix data)</a></li>
-                <li><a href="#">Connect Database (Coming Soon)</a></li>
-                <li><a href="#">Show Product (From Database) (Coming Soon)</a></li>
+                <li><a href="W07_01_ConnectDB.php">Connect Database</a></li>
+                <li><a href="W07_02_FetchData.php">Fetch Data</a></li>
+                <li><a href="W08_01_ProductFromDB.php">Show Product (From Database)</a></li>
             </ul>
         </section>
     </main>
