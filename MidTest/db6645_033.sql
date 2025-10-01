@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS tb_664230033 (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Sample data (optional)
--- INSERT INTO tb_664230033 (student_id, first_name, last_name, email, phone) VALUES
--- ('664230033', 'สมชาย', 'ใจดี', 'somchai@example.com', '0812345678'),
--- ('664230034', 'สมหญิง', 'รักสนุก', 'somying@example.com', '0823456789'),
--- ('664230035', 'วิชัย', 'มั่นคง', 'wichai@example.com', '0834567890');
+INSERT INTO tb_664230033 (student_id, first_name, last_name, email, phone) VALUES
+('664230033', 'เสกสรรญ', 'หลำวรรณะ', '664230033@webmail.npru.ac.th', '065XXXXXXX'),
+('664230034', 'สมหญิง', 'รักสนุก', 'somying@example.com', '0823456789'),
+('664230035', 'วิชัย', 'มั่นคง', 'wichai@example.com', '0834567890');
